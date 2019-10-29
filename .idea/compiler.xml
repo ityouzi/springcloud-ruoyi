@@ -18,8 +18,8 @@
         <module name="ruoyi-eureka" />
         <module name="ruoyi-gateway" />
         <module name="ruoyi-gen" />
-        <module name="ruoyi-service-api" />
         <module name="ruoyi-system" />
+        <module name="ruoyi-system-api" />
       </profile>
     </annotationProcessing>
   </component>

@@ -1,0 +1,79 @@
+server:
+  port: 9527
+
+spring:
+  application:
+    name: ruoyi-gateway
+
+  devtools:
+    restart:
+      enabled: true   #开启热部署
+
+  profiles:
+    active: dev       #配置文件路径
+
+  cloud:
+    config:
+      fail-fast: true #即在获取不到远程配置时，立即失败，但是用下边的配置进行重试
+      name: ${spring.application.name}
+      profile: ${spring.profiles.active}
+      discovery:
+        enabled: true
+        service-id: ruoyi-config
+
+    gateway:          #网关配置
+      discovery:
+        locator:
+          enabled: true
+
+      routes:         #路由配置 认证中心
+        # 认证中心
+        - id: ruiyi-auth            # 自定义的路由ID,保持唯一
+          rui: lb://ruoyi-auth      # uri以lb://开头（lb代表从注册中心获取服务），后面接的就是你需要转发到的服务名称
+          predicates:               # 路由条件
+            - Path=/auth/**
+          filters:                  # 过滤规则
+            - CacheRequest
+            - ImgCodeFilter
+            - StripPrefix=1         # 表示在转发时去掉auth
+        # 代码生成
+
+        # dfs 文件
+
+        #system 模块
+        - id: ruoyi-system
+          uri: lb://ruoyi-system
+          predicates:
+            - Path=/system/**
+          filters:                  # 路由限流配置
+            - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@remoteAddrKeyResolver}'
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+            - name: Hystrix          # 配置熔断降级
+              args:
+                name: fallbackcmd
+                fallbackUri: 'forward:/fallback'
+
+eureka:
+  client:
+    service-url:                      # 客户端注册进eureka服务列表内
+      defaultZone: http://eureka7001.com:7001/eureka
+      #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true
+
+hystrix:
+  command:
+    default:  #default全局有效，service id指定应用有效
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 #断路器超时时间，默认1000ms
+
+
