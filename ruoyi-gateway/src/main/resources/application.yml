@@ -27,15 +27,17 @@ spring:
           enabled: true
 
       routes:         #路由配置 认证中心
-        # 认证中心
-        - id: ruiyi-auth            # 自定义的路由ID,保持唯一
-          rui: lb://ruoyi-auth      # uri以lb://开头（lb代表从注册中心获取服务），后面接的就是你需要转发到的服务名称
-          predicates:               # 路由条件
-            - Path=/auth/**
-          filters:                  # 过滤规则
-            - CacheRequest
-            - ImgCodeFilter
-            - StripPrefix=1         # 表示在转发时去掉auth
+#        # 认证中心
+#        - id: ruiyi-auth            # 自定义的路由ID,保持唯一
+#          rui: lb://ruoyi-auth      # uri以lb://开头（lb代表从注册中心获取服务），后面接的就是你需要转发到的服务名称
+#          predicates:               # 路由条件
+#            - Path=/auth/**
+#          filters:                  # 过滤规则
+#            - CacheRequest
+#            - ImgCodeFilter
+#            - StripPrefix=1         # 表示在转发时去掉auth
+
+
         # 代码生成
 
         # dfs 文件
