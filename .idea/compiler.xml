@@ -7,10 +7,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ruoyi-common" />
+        <module name="common-auth" />
+        <module name="common-core" />
+        <module name="common-log" />
+        <module name="common-redis" />
+        <module name="common-swagger" />
+        <module name="ruoyi-auth" />
         <module name="ruoyi-config" />
+        <module name="ruoyi-dfs" />
         <module name="ruoyi-eureka" />
         <module name="ruoyi-gateway" />
+        <module name="ruoyi-gen" />
+        <module name="ruoyi-service-api" />
+        <module name="ruoyi-system" />
       </profile>
     </annotationProcessing>
   </component>
