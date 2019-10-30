@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class SysLoginService
 {
 
-    @Autowired
+    @Autowired(required = false)
     private RemoteUserService userService;
 
     /**

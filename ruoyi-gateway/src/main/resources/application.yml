@@ -20,41 +20,50 @@ spring:
       discovery:
         enabled: true
         service-id: ruoyi-config
-
-    gateway:          #网关配置
+    gateway:
       discovery:
         locator:
           enabled: true
-
-      routes:         #路由配置 认证中心
-#        # 认证中心
-#        - id: ruiyi-auth            # 自定义的路由ID,保持唯一
-#          rui: lb://ruoyi-auth      # uri以lb://开头（lb代表从注册中心获取服务），后面接的就是你需要转发到的服务名称
-#          predicates:               # 路由条件
-#            - Path=/auth/**
-#          filters:                  # 过滤规则
-#            - CacheRequest
-#            - ImgCodeFilter
-#            - StripPrefix=1         # 表示在转发时去掉auth
-
-
-        # 代码生成
-
-        # dfs 文件
-
+      routes:         #路由配置
+        # 认证中心
+        - id: ruoyi-auth          #自定义的路由ID,保持唯一
+          uri: lb://ruoyi-auth    #目标服务地址
+          predicates:             #路由条件
+            - Path=/auth/**
+          filters:                #过滤规则
+            # 验证码处理
+            - CacheRequest
+            - ImgCodeFilter
+            - StripPrefix=1
+#        # 代码生成
+#        - id: ruoyi-gen
+#          uri: lb://ruoyi-gen
+#          predicates:
+#            - Path=/gen/**
+#          filters:
+#            - StripPrefix=1
+#        # dfs  文件
+#        - id: ruoyi-dfs
+#          uri: lb://ruoyi-dfs
+#          predicates:
+#            - Path=/dfs/**
+#          filters:
+#            - StripPrefix=1
         #system 模块
         - id: ruoyi-system
           uri: lb://ruoyi-system
           predicates:
             - Path=/system/**
-          filters:                  # 路由限流配置
+          filters:
+            # 限流配置
             - StripPrefix=1
             - name: RequestRateLimiter
               args:
                 key-resolver: '#{@remoteAddrKeyResolver}'
                 redis-rate-limiter.replenishRate: 10
                 redis-rate-limiter.burstCapacity: 20
-            - name: Hystrix          # 配置熔断降级
+              # 降级配置
+            - name: Hystrix
               args:
                 name: fallbackcmd
                 fallbackUri: 'forward:/fallback'

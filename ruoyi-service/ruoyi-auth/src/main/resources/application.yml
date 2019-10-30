@@ -3,7 +3,7 @@ server:
 # 日志配置
 logging:
   level:
-    com.ruoyi: debug
+    com.ityouzi.auth: debug
     org.springframework: warn
 spring:
   application:

@@ -15,7 +15,7 @@ import java.util.Map;
 @Service("accessTokenService")
 public class AccessTokenService
 {
-    @Autowired
+    @Autowired(required = false)
     private RedisUtils redis;
 
     /**
