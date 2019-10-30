@@ -9,7 +9,9 @@ import com.ityouzi.core.exception.user.UserDeleteException;
 import com.ityouzi.core.exception.user.UserNotExistsException;
 import com.ityouzi.core.exception.user.UserPasswordNotMatchException;
 import com.ityouzi.core.utils.*;
+
 import com.ityouzi.log.publish.PublishFactory;
+
 import com.ityouzi.system.domain.SysUser;
 import com.ityouzi.system.feign.RemoteUserService;
 import com.ityouzi.system.util.PasswordUtil;
@@ -17,11 +19,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SysLoginService
-{
+public class SysLoginService {
 
-    @Autowired(required = false)
+
+    @Autowired
     private RemoteUserService userService;
+
 
     /**
      * 登录
@@ -69,8 +72,7 @@ public class SysLoginService
         // {
         // user = userService.selectUserByEmail(username);
         // }
-        if (user == null)
-        {
+        if (user == null) {
             PublishFactory.recordLogininfor(username, Constants.LOGIN_FAIL,
                     MessageUtils.message("user.not.exists"));
             throw new UserNotExistsException();

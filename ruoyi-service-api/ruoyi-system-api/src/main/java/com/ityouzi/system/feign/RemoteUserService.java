@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface RemoteUserService
 {
     @GetMapping("user/find/{username}")
-    public SysUser selectSysUserByUsername(@PathVariable("username") String username);
+    SysUser selectSysUserByUsername(@PathVariable("username") String username);
 
     @PostMapping("user/update/login")
-    public ResultMsg updateUserLoginRecord(@RequestBody SysUser user);
+    ResultMsg updateUserLoginRecord(@RequestBody SysUser user);
 }

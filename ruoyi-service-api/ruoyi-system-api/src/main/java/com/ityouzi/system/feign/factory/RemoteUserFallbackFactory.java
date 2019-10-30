@@ -19,14 +19,12 @@ public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserServ
         return new RemoteUserService()
         {
             @Override
-            public SysUser selectSysUserByUsername(String username)
-            {
+            public SysUser selectSysUserByUsername(String username) {
                 return null;
             }
 
             @Override
-            public ResultMsg updateUserLoginRecord(SysUser user)
-            {
+            public ResultMsg updateUserLoginRecord(SysUser user) {
                 return ResultMsg.error();
             }
         };

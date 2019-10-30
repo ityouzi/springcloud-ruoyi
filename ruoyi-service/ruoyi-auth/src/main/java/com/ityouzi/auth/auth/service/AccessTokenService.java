@@ -4,6 +4,7 @@ package com.ityouzi.auth.auth.service;
 import cn.hutool.core.util.IdUtil;
 import com.ityouzi.core.constant.Constants;
 import com.ityouzi.core.utils.StringUtils;
+import com.ityouzi.redis.annotation.RedisEvict;
 import com.ityouzi.redis.util.RedisUtils;
 import com.ityouzi.system.domain.SysUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service("accessTokenService")
-public class AccessTokenService
-{
-    @Autowired(required = false)
+public class AccessTokenService {
+
+
+    @Autowired
     private RedisUtils redis;
 
     /**
@@ -32,7 +34,7 @@ public class AccessTokenService
         return redis.get(ACCESS_TOKEN + token, SysUser.class);
     }
 
-//    @RedisEvict(key = "user_perms", fieldKey = "#sysUser.userId")
+    @RedisEvict(key = "user_perms", fieldKey = "#sysUser.userId")
     public Map<String, Object> createToken(SysUser sysUser)
     {
         // 生成token
