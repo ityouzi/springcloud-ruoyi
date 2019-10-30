@@ -1,12 +1,10 @@
 server:
   port: 8001
-
 # 日志配置
 logging:
   level:
-    com.ityouzi: debug
-    org.springframework: warn   # 服务器警告
-
+    com.ityouzi.system: debug
+    org.springframework: warn
 spring:
   application:
     name: ruoyi-system
@@ -20,7 +18,7 @@ spring:
         service-id: ruoyi-config
   profiles:
     active: dev
-  devtools:           #热启动
+  devtools:
     restart:
       enabled: true
   main:
@@ -28,27 +26,24 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-
   servlet:
     multipart:
-      max-request-size: 10MB  # 单位必须大写MB或不写(即为B)
-      max-file-size: 5MB
+      maxFileSize: 5MB  #单位必须大写MB或不写(即为B)
+      maxRequestSize: 10MB
+
 
 feign:
   hystrix:
     enabled: true
 
 eureka:
-  client:
+  client: #客户端注册进eureka服务列表内
     service-url:
       defaultZone: http://eureka7001.com:7001/eureka
       #defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
   instance:
-    prefer-ip-address: true     # 访问路径可以显示IP地址
     instance-id: ${spring.application.name}:${server.port}
-
-
-
+    prefer-ip-address: true     #访问路径可以显示IP地址
 # 暴露监控端点
 management:
   endpoints:
@@ -56,12 +51,13 @@ management:
       exposure:
         include: '*'
 
+
 # MyBatis
 mybatis:
   # 搜索指定包别名
-  type-aliases-package: com.ityouzi
+  typeAliasesPackage: com.ruoyi
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
-  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
 
 mapper:
   not-empty: true

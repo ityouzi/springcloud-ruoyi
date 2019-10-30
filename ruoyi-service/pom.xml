@@ -13,8 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>ruoyi-auth</module>
-        <module>ruoyi-dfs</module>
-        <module>ruoyi-gen</module>
         <module>ruoyi-system</module>
     </modules>
 

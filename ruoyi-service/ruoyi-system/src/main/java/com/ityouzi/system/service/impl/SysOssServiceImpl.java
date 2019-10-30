@@ -8,6 +8,7 @@ import com.ityouzi.system.service.ISysOssService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.entity.Example.Criteria;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class SysOssServiceImpl implements ISysOssService
 	public List<SysOss> selectSysOssList(SysOss sysOss)
 	{
 	    Example example = new Example(SysOss.class);
-        Example.Criteria criteria = example.createCriteria();
+        Criteria criteria = example.createCriteria();
         if (StringUtils.isNotBlank(sysOss.getFileName()))
         {
             criteria.andLike("fileName", "%" + sysOss.getFileName() + "%");

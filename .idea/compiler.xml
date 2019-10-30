@@ -14,13 +14,16 @@
         <module name="common-swagger" />
         <module name="ruoyi-auth" />
         <module name="ruoyi-config" />
-        <module name="ruoyi-dfs" />
         <module name="ruoyi-eureka" />
         <module name="ruoyi-gateway" />
-        <module name="ruoyi-gen" />
         <module name="ruoyi-system" />
         <module name="ruoyi-system-api" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ruoyi-dfs" target="1.8" />
+      <module name="ruoyi-gen" target="1.8" />
+      <module name="ruoyi-service" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

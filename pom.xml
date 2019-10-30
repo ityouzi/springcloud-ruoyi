@@ -14,8 +14,8 @@
         <module>ruoyi-common</module>
         <module>ruoyi-eureka</module>
         <module>ruoyi-gateway</module>
-        <module>ruoyi-service</module>
         <module>ruoyi-service-api</module>
+        <module>ruoyi-service</module>
     </modules>
     <properties>
         <ruoyi.version>1.0-SNAPSHOT</ruoyi.version>

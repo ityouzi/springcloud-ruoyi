@@ -8,18 +8,17 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import tk.mybatis.spring.annotation.MapperScan;
 
-/**
- * 启动程序
- */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-@EnableEurekaClient
 @EnableFeignClients
+@EnableEurekaClient
 @MapperScan("com.ityouzi.system.mapper")
 @Slf4j
 public class SystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(SystemApplication.class,args);
-        log.info("======>>启动系统程序");
+        log.info("======>> 启动系统");
+
     }
+
 
 }
