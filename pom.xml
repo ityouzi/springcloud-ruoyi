@@ -16,6 +16,7 @@
         <module>ruoyi-gateway</module>
         <module>ruoyi-service-api</module>
         <module>ruoyi-service</module>
+        <module>ruoyi-quartz</module>
     </modules>
     <properties>
         <ruoyi.version>1.0-SNAPSHOT</ruoyi.version>

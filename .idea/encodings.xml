@@ -11,6 +11,7 @@
     <file url="file://$PROJECT_DIR$/ruoyi-config" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ruoyi-eureka" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ruoyi-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ruoyi-quartz" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ruoyi-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ruoyi-service-api" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ruoyi-service-api/ruoyi-system-api" charset="UTF-8" />

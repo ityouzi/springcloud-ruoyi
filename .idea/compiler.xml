@@ -16,6 +16,7 @@
         <module name="ruoyi-config" />
         <module name="ruoyi-eureka" />
         <module name="ruoyi-gateway" />
+        <module name="ruoyi-quartz" />
         <module name="ruoyi-system" />
         <module name="ruoyi-system-api" />
       </profile>
